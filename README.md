@@ -10,9 +10,15 @@
   http://blog.csdn.net/u010191034/article/details/24555161  
   #### 为什么MVC不是一种设计模式  
   https://www.cnblogs.com/aaronjs/p/3581904.html  
-  
-### 我的开发环境:    
-  win7-64  
+    
+### 其他参考  
+  由于Struts1和Spring MVC的入口是servlet，而Struts2的入口时Filter，这里有关于他们区别的参考  
+  ##### Java过滤器与SpringMVC拦截器之间的关系与区别  
+    http://blog.csdn.net/chenleixing/article/details/44573495  
+  ##### servlet/filter/listener/interceptor区别与联系  
+    https://www.cnblogs.com/doit8791/p/4209442.html
+### 我的开发环境:    
+  win7-64  
   jdk-1.8  
   eclipse-oxygen  
   tomcat-8.0  
