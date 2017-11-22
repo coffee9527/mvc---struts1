@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struts>
+	<!-- 
+	可以有多个request标签
+	但request中必须有path属性，子元素只能有form-bean和action-bean,
+	且form-bean在前
+	格式必须如下
+	
+		<request path="/toRegister3">
+		<form-bean class="struts1.formbean.Student".>
+		<action-bean class="struts1.register.ToRegisterAction">
+			<forward>
+				<success value="/WEB-INF/jsp/register3/register.jsp"/>
+				<failure value="..."/> 
+			</forward>
+		</action-bean>
+	</request>
+	 -->
+	<request path="/toRegister3">
+		<form-bean class="struts1.formbean.Student"/>
+		<action-bean class="struts1.register.ToRegisterAction">
+			<forward>
+				<!-- 可以只配一个success元素 -->
+				<success value="/WEB-INF/jsp/register3/register.jsp"/>
+				<!-- <failure value=""/> -->
+			</forward>
+		</action-bean>
+	</request>
+</struts>
