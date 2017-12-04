@@ -23,8 +23,12 @@ import struts1.config.XmlBean;
 @WebServlet(value="*.com",initParams={@WebInitParam(name="configPath",value="struts1/config/struts1-config.xml")})//应在配置文件中配置
 public class ActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String configPath;  
-	private static Map<String, XmlBean> configMap;
+	
+	/**
+	 * servelt是单例的，为避免线程安全问题，不使用成员变量
+	 */
+//	private static String configPath;  
+//	private static Map<String, XmlBean> configMap;
 
     public ActionServlet() {
         super();
@@ -35,9 +39,8 @@ public class ActionServlet extends HttpServlet {
      */
     @Override
     public void init(ServletConfig config) throws ServletException {
-          //获取初始值username
-    	configPath = config.getInitParameter("configPath");
-    	configMap = ParseConfig.parse(configPath);
+          //获取初始值配置文件
+    	ParseConfig.parse(config.getInitParameter("configPath"));
 
     }
 
@@ -53,7 +56,7 @@ public class ActionServlet extends HttpServlet {
 //---------------获取路径和formbean的对应配置---------
 		//获取路径
 		String pathName = getPathName(request.getServletPath());
-		XmlBean xmlBean = configMap.get(pathName);
+		XmlBean xmlBean = ParseConfig.getConfigMap().get(pathName);
 		String formbeanPath = xmlBean.getFormBeanPath();
 		String actionPath = xmlBean.getActionBeanPath();
 		String url = "";
