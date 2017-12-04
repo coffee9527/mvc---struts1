@@ -24,12 +24,11 @@ import struts1.common.action.Action;
  *
  */
 public class ParseConfig {
-	private static Map<String, XmlBean> beanMap;
 	
-	public static void parse(String xmlPath) {
+	public static Map<String, XmlBean> parse(String xmlPath) {
 		String localPath = ParseConfig.class.getClassLoader().getResource("").getPath();
 		
-		beanMap = new HashMap<String, XmlBean>();
+		Map<String, XmlBean> beanMap = new HashMap<String, XmlBean>();
 		
 		 // Ⅰ获得DocumentBuilderFactory  
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();  
@@ -115,9 +114,6 @@ public class ParseConfig {
         } catch (IOException e) {  
             e.printStackTrace();  
         }  
-	}
-	
-	public static Map<String, XmlBean> getConfigMap() {
 		return beanMap;
 	}
 }
