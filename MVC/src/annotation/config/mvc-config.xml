@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvc>
+    <!-- 可以用xml配置，也可以用properties文件来配置，此处只实现了
+    properties文件的加载解析
+     -->
+	<base-package value="annotation.register"/>
+</mvc>
