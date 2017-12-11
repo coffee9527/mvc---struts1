@@ -3,9 +3,9 @@ package annotation.register;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import annotation.common.action.Action;
+import annotation.common.formbean.FormBean;
 import annotation.myannotation.MyAction;
-import struts1.common.action.Action;
-import struts1.common.formbean.FormBean;
 
 /**
  * 注册页面跳转页面

@@ -2,7 +2,8 @@ package annotation.formbean;
 
 import java.util.Date;
 
-import struts1.common.formbean.FormBean;
+import annotation.common.formbean.FormBean;
+
 
 
 public class Student extends FormBean{

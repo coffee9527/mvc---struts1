@@ -3,7 +3,8 @@ package annotation.common.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import struts1.common.formbean.FormBean;
+import annotation.common.formbean.FormBean;
+
 
 
 /**

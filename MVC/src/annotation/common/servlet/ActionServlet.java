@@ -13,11 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import example2.config.ConfigMap;
-import struts1.common.action.Action;
-import struts1.common.formbean.FormBean;
-import struts1.config.ParseConfig;
-import struts1.config.XmlBean;
+import annotation.common.action.Action;
+import annotation.common.formbean.FormBean;
+import annotation.config.ParseConfig;
+import annotation.config.XmlBean;
 
 
 @WebServlet(value="*.cn",initParams={@WebInitParam(name="configPath",value="/annotation/config/mvc-config.properties")})//应在配置文件中配置
@@ -37,7 +36,9 @@ public class ActionServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
           //获取初始值username
     	configPath = config.getInitParameter("configPath");
-    	ParseConfig.parse(configPath);
+    	ParseConfig instance = ParseConfig.getInstance();
+    	instance.parse(configPath);
+    	configMap = instance.getMap();
 
     }
 
@@ -58,6 +59,8 @@ public class ActionServlet extends HttpServlet {
 		String actionPath = xmlBean.getActionBeanPath();
 		String url = "";
 		try {
+			String result;
+			if(formbeanPath != null) {
 				Class formBeanClazz = Class.forName(formbeanPath);
 				FormBean formBean  = (FormBean)formBeanClazz.newInstance();
 				Field[] fields = formBeanClazz.getDeclaredFields();
@@ -67,10 +70,15 @@ public class ActionServlet extends HttpServlet {
 					field.set(formBean, param);
 					field.setAccessible(false);
 				}
-				
 				Class actionClass = Class.forName(actionPath);
 				Action action  = (Action)actionClass.newInstance();
-				String result = action.execute(request, response, formBean);
+				result = action.execute(request, response, formBean);
+			}else {
+				Class actionClass = Class.forName(actionPath);
+				Action action  = (Action)actionClass.newInstance();
+				result = action.execute(request, response, null);
+			}
+				
 			
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher(xmlBean.getUrlMap().get(result));
 			requestDispatcher.forward(request, response);
